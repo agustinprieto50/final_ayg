@@ -1,6 +1,7 @@
 import pandas as pd
 import datetime as dt
 
+# Pasar inicio y fin como una tupla (año, mes, dia)
 def session_time_total(datos, inicio, fin):
     inicio = dt.date(inicio)
     fin = dt.date(fin)
