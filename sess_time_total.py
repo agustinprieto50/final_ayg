@@ -17,20 +17,25 @@
 
 import pandas as pd
 import funcion2 as f2
-
+import datetime as dt
 
 def session_time_total(datos, inicio, fin):
     aux = list()
+    tot_sess = 0
     for i in datos:
-        if inicio in i[1] or fin in i[1]:
+        date = pd.to_datetime(i[1])
+        date = date.date()
+        while date >= inicio and date <= fin:
             aux.append(i)
-        else:
+            tot_sess += i[3]
             break
-    print(aux)
+    for i in aux:
+        print(i)
+    print(tot_sess)
+
 
 if __name__ == '__main__':
     datos = f2.tiempos_usuario('mleenw')
-    session_time_total(datos, '2019-08-29', '2019-08-30')
-    print(datos[0][2])
-
-
+    inicio = dt.date(2019, 8, 29)
+    fin = dt.date(2019, 8, 30)
+    session_time_total(datos, inicio, fin)
