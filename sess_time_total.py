@@ -18,12 +18,15 @@ import pandas as pd
 import funcion2 as f2
 import pandas as pd
 import datetime as dt
+import re
 
 
 # Pasar inicio y fin como una tupla (año, mes, dia)
-def session_time_total(datos, inicio, fin):
-    date_inicio = dt.datetime(2019, 8, 29).date()
-    date_final = dt.datetime(2019, 8, 30).date()
+def session_time_total(datos, inicio: str, fin: str):
+    fecha_inicio  = re.split("-|/| ", inicio)
+    fecha_final  = re.split("-|/| ", fin)
+    date_inicio = dt.datetime(int(fecha_inicio[0]), int(fecha_inicio[1]), int(fecha_inicio[2])).date()
+    date_final = dt.datetime(int(fecha_final[0]), int(fecha_final[1]), int(fecha_final[2])).date()
     sess_time_total = 0
     for i in datos:
         try:
