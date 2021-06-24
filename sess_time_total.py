@@ -16,9 +16,11 @@
 '''
 import pandas as pd
 import funcion2 as f2
+import pandas as pd
 import datetime as dt
 
 
+# Pasar inicio y fin como una tupla (año, mes, dia)
 def session_time_total(datos, inicio, fin):
     date_inicio = dt.datetime(2019, 8, 29).date()
     date_final = dt.datetime(2019, 8, 30).date()
@@ -36,5 +38,3 @@ if __name__ == '__main__':
     datos = f2.tiempos_usuario('mleenw')
     rango = session_time_total(datos, '2019-08-29', '2019-08-30')
     print(rango)
-
-
