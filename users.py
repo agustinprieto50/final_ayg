@@ -11,6 +11,6 @@ def list_users(data: list): # pasamos el xlsx
             regex = re.search(r'\b([A-Za-z-\.\/\d*]{1,})\b', str(i)) # busca los nombres 
             if regex:
                 users.append(regex.group())
-    return set(users)
+    return list(set(users))
 # print(open('acts-user.xlsx'))
 # print(list_users(open('acts-user.xlsx')))

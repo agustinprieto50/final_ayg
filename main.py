@@ -1,24 +1,24 @@
-"""
-Unimos todo
-"""
 from file_manager import open_excel
 from funcion2 import tiempos_usuario
 from users import list_users
 from sess_time_total import session_time_total
+import pandas as pd
+import cmd
 
-# TODO: Volcar la lista de la julia en excel
+
+# TODO: Volcar en excel [user, f_inicio, f_fin, TST]
+# TODO: Validar toma de fecha
 
 
 if __name__ == "__main__":
     data = open_excel("acts-user.xlsx")
     usuarios = list_users(data)
     # Mostrar usuarios
-    print("========= LISTA DE USUARIOS =========")
-    for i in usuarios:
-        if i == "nan" or i == "Timestamp":
-            continue
-        print(f"\t{i}")
-    print("=====================================\n")
+    print(" LISTA DE USUARIOS ".center(80, "="))
+    cli = cmd.Cmd()
+    cli.columnize(usuarios, displaywidth=80)
+    print("".center(80, "="))
+
     #========= INPUT user =========
     user = input("\nSeleccione un usuario: ")
     tiempo_usuario = tiempos_usuario(user)
