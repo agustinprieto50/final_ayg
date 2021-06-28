@@ -1,13 +1,8 @@
-from file_manager import open_excel
+from file_manager import open_excel, read_csv, dump_csv
 from funcion2 import tiempos_usuario
 from users import list_users
-from sess_time_total import session_time_total
-import pandas as pd
+from sess_time_total import session_time_total, validate_fechas
 import cmd
-
-
-# TODO: Volcar en excel [user, f_inicio, f_fin, TST]
-# TODO: Validar toma de fecha
 
 
 if __name__ == "__main__":
@@ -27,6 +22,15 @@ if __name__ == "__main__":
     fecha_inicio = input("\nIngrese la fecha de inicio: ")
     fecha_final = input("\nIngrese la fecha final: ")
 
+    fecha_inicio, fecha_final = validate_fechas(fecha_inicio, fecha_final)
+
     rango = session_time_total(tiempo_usuario, fecha_inicio, fecha_final)
     print("\nEl tiempo total de sesion fue de:")
     print(f"\t{rango} segundos")
+
+    choice = input("\nDesea guardar la busqueda en formato .csv [Y/N]? ").upper()
+    if choice.startswith(("Y", "S")):
+        dump_csv("user_TST.csv", user, fecha_inicio, fecha_final, rango)
+    exit(0)
+
+
