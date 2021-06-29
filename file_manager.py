@@ -7,8 +7,10 @@ import pandas as pd
 
 def open_excel(path): # abre el excel
     data = pd.read_excel(path, engine='openpyxl', header=0)
-    raw_list = data.values.tolist() # la convertimos en lista
+    raw_list = data.values.tolist() # convertimos el excel en lista
     for i in raw_list: # filtramos los datos
+
+        # borra los indices que no se necesitan
         del i[0], i[4], i[4], i[4], i[4]
     return raw_list
 
