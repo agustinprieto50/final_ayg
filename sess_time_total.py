@@ -8,7 +8,9 @@ from datetime import date
 # matcheen con la expresion regular se las reemplaza
 # por un valor default que es el dia de la fecha
 def validate_fecha(fecha):
-    regex = r"(\d{4})(-|/| )(\d{1,2})(-|/| )(\d{1,2})"
+
+    #          AÑO   sep        MES          sep               DIA
+    regex = r"\d{4}(\-|/| )(0?[1-9]|1[0-2])(\-|/| )(0?[1-9]|[1-2][0-9]|3[0-1])"
     if not re.match(regex, fecha):
         print("[ADVERTENCIA]: El valor ingresado no fue valido y tomara el valor por defecto")
         fecha = date.today().strftime("%Y-%m-%d")

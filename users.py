@@ -18,7 +18,11 @@ def list_users(data: list): # pasamos el xlsx
             if regex:
                 # group devuelve el match como string
                 users.append(regex.group())
-    return list(set(users))
+    
+    users = list(set(users))
+    users.pop(users.index('nan'))
+        
+    return users
 
 
 def tiempos_usuario(nombre): 
@@ -29,7 +33,6 @@ def tiempos_usuario(nombre):
     for i in lista:
         if r.match(str(i[1])): 
             datos_usuario.append([i[1], i[2], i[3], i[4]])
-
     return datos_usuario
 # print(open('acts-user.xlsx'))
 # print(list_users(open('acts-user.xlsx')))
