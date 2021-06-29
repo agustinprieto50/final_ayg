@@ -14,9 +14,16 @@ def list_users(data: list): # pasamos el xlsx
     return list(set(users))
 
 
+# Obtener los registros del usuario ingresado
+# Retorna una lista de registros con los siguientes campos:
+#   [USER, FECHA_INICIO, FECHA_FIN, TST]
 def tiempos_usuario(nombre): 
     df = pd.read_excel('acts-user.xlsx', engine='openpyxl', header=0)
     lista = df.values.tolist()
+
+    # A modo de utilizar regex, se realiza una expresion regular con
+    # el nombre del usuario y cada vez que matchea se agrega el registro
+    # con los campos de interes unicamente a una lista
     r = re.compile(nombre)
     datos_usuario = []
     for i in lista:
@@ -24,5 +31,3 @@ def tiempos_usuario(nombre):
             datos_usuario.append([i[1], i[2], i[3], i[4]])
 
     return datos_usuario
-# print(open('acts-user.xlsx'))
-# print(list_users(open('acts-user.xlsx')))
